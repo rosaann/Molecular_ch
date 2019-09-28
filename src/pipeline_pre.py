@@ -63,9 +63,13 @@ def make_structure_dict(atoms_dataframe):
     atoms = atoms_dataframe.sort_values(["molecule_name", "atom_index"])  # ensure ordering is consistent
     # Make a molecule-based dictionary of the information
     structure_dict = collections.defaultdict(lambda: {"symbols":[],"positions":[]})
+    i = 0
     for index,row in atoms.iterrows():
         structure_dict[row["molecule_name"]]["symbols"].append(row["atom"])
         structure_dict[row["molecule_name"]]["positions"].append([row["x"],row["y"],row["z"]])
+        i += 1
+        if i == 100:
+            print('structure_dict ', structure_dict)
     return structure_dict
 
 
@@ -771,7 +775,7 @@ def auto_preproc_stage1():
     atoms = pd.read_csv(os.path.join(root,settings['RAW_DATA_DIR'],'structures.csv'))
     print('Parsing structures...')
     structure_dict = make_structure_dict(atoms)
-    print(structure_dict);
+ #   print(structure_dict);
     print('Adding structure features...')
     enhance_structure_dict(structure_dict)
     print('Updating atoms dataframe...')
