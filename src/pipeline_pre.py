@@ -771,6 +771,7 @@ def auto_preproc_stage1():
     atoms = pd.read_csv(os.path.join(root,settings['RAW_DATA_DIR'],'structures.csv'))
     print('Parsing structures...')
     structure_dict = make_structure_dict(atoms)
+    print(structure_dict);
     print('Adding structure features...')
     enhance_structure_dict(structure_dict)
     print('Updating atoms dataframe...')
