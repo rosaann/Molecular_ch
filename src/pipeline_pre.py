@@ -63,13 +63,13 @@ def make_structure_dict(atoms_dataframe):
     atoms = atoms_dataframe.sort_values(["molecule_name", "atom_index"])  # ensure ordering is consistent
     # Make a molecule-based dictionary of the information
     structure_dict = collections.defaultdict(lambda: {"symbols":[],"positions":[]})
-    i = 0
+   # i = 0
     for index,row in atoms.iterrows():
         structure_dict[row["molecule_name"]]["symbols"].append(row["atom"])
         structure_dict[row["molecule_name"]]["positions"].append([row["x"],row["y"],row["z"]])
-        i += 1
-        if i == 100:
-            print('structure_dict ', structure_dict)
+      #  i += 1
+      #  if i == 100:
+      #      print('structure_dict ', structure_dict)
     return structure_dict
 
 
@@ -85,6 +85,7 @@ def enhance_structure_dict(structure_dict):
     Caution: If torch is imported at the same time as this is run, you may get a segmentation fault. Complain to pybel or rdkit, I suppose.
     """
     import pybel
+    i = 0
     for molecule_name in structure_dict:
 
         # positions - array (N,3) of Cartesian positions
@@ -98,6 +99,12 @@ def enhance_structure_dict(structure_dict):
         pos2 = np.transpose(pos1, (1,0,2) )
         dist = np.linalg.norm(pos1 - pos2, axis=-1)
         molecule['distances'] = dist
+        
+        if i == 0:
+            print("n_atom ", n_atom)
+            print("pos1 ", pos1)
+            print("pos2 ", pos2)
+            print("dist ", dist)
 
         # angle - array (N,) of angles to the 2 closest atoms
         sorted_j = np.argsort(dist, axis=-1)
@@ -157,6 +164,8 @@ def enhance_structure_dict(structure_dict):
         molecule['heterovalences'] = [mol.atoms[i].heterovalence for i in range(n_atom)]
         molecule['valences'] = [mol.atoms[i].valence for i in range(n_atom)]
         molecule['hyb_types'] = [mol.atoms[i].type for i in range(n_atom)]
+        
+        i ++
     return structure_dict
 
 
