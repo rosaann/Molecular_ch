@@ -101,9 +101,6 @@ def enhance_structure_dict(structure_dict):
         molecule['distances'] = dist
         
         if i == 0:
-            print("n_atom ", n_atom)
-            print("pos1 ", pos1)
-            print("pos2 ", pos2)
             print("dist ", dist)
 
         # angle - array (N,) of angles to the 2 closest atoms
@@ -113,6 +110,18 @@ def enhance_structure_dict(structure_dict):
         cos = np.sum(relpos1*relpos2,axis=1) / (np.linalg.norm(relpos1,axis=1) * np.linalg.norm(relpos2,axis=1))
         angle = np.arccos( np.clip(cos,-1.0,1.0) ).reshape((n_atom,1)) / np.pi
         molecule['angle'] = angle[:,0]
+        
+        if i == 0:
+            print("sorted_j ", sorted_j)
+            print("positions ", positions)
+            print("relpos1 ", relpos1)
+            print("relpos2 ", relpos2)
+            print("relpos1*relpos2 ", relpos1*relpos2)
+            print("np.sum(relpos1*relpos2,axis=1) ", np.sum(relpos1*relpos2,axis=1))
+            print("np.linalg.norm(relpos1,axis=1) ", np.linalg.norm(relpos1,axis=1))
+            print("np.linalg.norm(relpos2,axis=1) ", np.linalg.norm(relpos2,axis=1))
+            print("cos ", cos)
+            print("angle ", angle)
 
         # bond orders - array (N,N) of the bond order (0 for no chemical bond)
         # Note this relies on a few manual corrections
