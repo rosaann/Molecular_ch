@@ -165,7 +165,7 @@ def enhance_structure_dict(structure_dict):
         molecule['valences'] = [mol.atoms[i].valence for i in range(n_atom)]
         molecule['hyb_types'] = [mol.atoms[i].type for i in range(n_atom)]
         
-        i ++
+        i += 1
     return structure_dict
 
 
