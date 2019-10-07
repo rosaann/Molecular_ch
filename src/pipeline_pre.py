@@ -114,6 +114,10 @@ def enhance_structure_dict(structure_dict):
         if i == 0:
             print("sorted_j ", sorted_j)
             print("positions ", positions)
+            print("positions[sorted_j[:,1],:] ", positions[sorted_j[:,1],:])
+            print("positions[sorted_j[:,0],:] ", positions[sorted_j[:,0],:])
+            print("positions[sorted_j[:,2],:] ", positions[sorted_j[:,2],:])
+            print("positions[sorted_j[:,0],:] ", positions[sorted_j[:,0],:])
             print("relpos1 ", relpos1)
             print("relpos2 ", relpos2)
             print("relpos1*relpos2 ", relpos1*relpos2)
