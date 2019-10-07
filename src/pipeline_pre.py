@@ -100,8 +100,6 @@ def enhance_structure_dict(structure_dict):
         dist = np.linalg.norm(pos1 - pos2, axis=-1)
         molecule['distances'] = dist
         
-        if i == 0:
-            print("dist ", dist)
 
         # angle - array (N,) of angles to the 2 closest atoms
         sorted_j = np.argsort(dist, axis=-1)
@@ -111,7 +109,7 @@ def enhance_structure_dict(structure_dict):
         angle = np.arccos( np.clip(cos,-1.0,1.0) ).reshape((n_atom,1)) / np.pi
         molecule['angle'] = angle[:,0]
         
-        if i == 0:
+        if i == -1:
             print("sorted_j ", sorted_j)
             print("positions ", positions)
             print("sorted_j[:,1] ", sorted_j[:,1])
@@ -137,6 +135,8 @@ def enhance_structure_dict(structure_dict):
         if molecule_name in manual_bond_order_dict:
             molecule['bond_orders'] = np.array(manual_bond_order_dict[molecule_name],dtype=float)
         else:
+            if i == 0:
+                print("atomicNumList ", atomicNumList)
             mol = x2m.xyz2mol(atomicNumList,0,positions,True,True)
             for bond in mol.GetBonds():
                 atom0, atom1 = bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()

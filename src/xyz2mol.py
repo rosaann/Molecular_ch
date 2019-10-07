@@ -32,7 +32,7 @@ from collections import defaultdict
 import copy
 import networkx as nx #uncomment if you don't want to use "quick"/install networkx
 
-
+tttt = 0
 global __ATOM_LIST__
 __ATOM_LIST__ = [ x.strip() for x in ['h ','he', \
       'li','be','b ','c ','n ','o ','f ','ne', \
@@ -340,14 +340,25 @@ def AC2mol(mol,AC,atomicNumList,charge,charged_fragments,quick):
 
 
 def get_proto_mol(atomicNumList):
+    
     mol = Chem.MolFromSmarts("[#"+str(atomicNumList[0])+"]")
     rwMol = Chem.RWMol(mol)
+    
+    if tttt == 0:
+        print("atomicNumList ", atomicNumList)
+        print("mol ", mol)
+        print("rwMol ", rwMol)
     for i in range(1,len(atomicNumList)):
         a = Chem.Atom(atomicNumList[i])
         rwMol.AddAtom(a)
-    
+        if tttt == 0:
+            print("a i ", a, i)
+    if tttt == 0:
+        print("rwMol 1", rwMol)
     mol = rwMol.GetMol()
-
+    if tttt == 0:
+        print("mol ", mol)
+        tttt += 1
     return mol
 
 
