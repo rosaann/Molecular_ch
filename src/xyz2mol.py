@@ -32,7 +32,7 @@ from collections import defaultdict
 import copy
 import networkx as nx #uncomment if you don't want to use "quick"/install networkx
 
-tttt = 0
+global tttt = 0
 global __ATOM_LIST__
 __ATOM_LIST__ = [ x.strip() for x in ['h ','he', \
       'li','be','b ','c ','n ','o ','f ','ne', \
