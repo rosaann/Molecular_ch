@@ -345,7 +345,7 @@ def get_proto_mol(atomicNumList):
     mol = Chem.MolFromSmarts("[#"+str(atomicNumList[0])+"]")
     rwMol = Chem.RWMol(mol)
     
-    if tttt == 0:
+    if 1:
         print("atomicNumList ", atomicNumList)
         print("mol ", mol)
         print("rwMol ", rwMol)
@@ -354,12 +354,13 @@ def get_proto_mol(atomicNumList):
         rwMol.AddAtom(a)
         if tttt == 0:
             print("a i ", a, i)
-    if tttt == 0:
+    if 1:
         print("rwMol 1", rwMol)
     mol = rwMol.GetMol()
-    if tttt == 0:
+    if 1:
         print("mol ", mol)
-        tttt += 1
+        print('mol--end')
+        
     return mol
 
 
