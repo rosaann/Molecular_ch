@@ -172,7 +172,7 @@ train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, dr
 if val_dataset is not None:
     assert args.mode != "_full", "You should NOT use the validation set when not in _full mode"
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
-
+print('train_dataset.tensors ', train_dataset.tensors)
 NUM_ATOM_TYPES = [int(train_dataset.tensors[1][:,:,i].max()) for i in range(3)]   # Atom hierarchy has 3 levels
 NUM_BOND_TYPES = [int(train_dataset.tensors[3][:,:,i].max()) for i in range(3)]   # Bond hierarchy has 3 levels
 NUM_TRIPLET_TYPES = [int(train_dataset.tensors[5][:,:,i].max()) for i in range(2)]  # Triplet hierarchy has 2 levels
