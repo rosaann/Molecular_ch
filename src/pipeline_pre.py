@@ -181,7 +181,7 @@ def enhance_structure_dict(structure_dict):
         molecule['heterovalences'] = [mol.atoms[i].heterovalence for i in range(n_atom)]
         molecule['valences'] = [mol.atoms[i].valence for i in range(n_atom)]
         molecule['hyb_types'] = [mol.atoms[i].type for i in range(n_atom)]
-        if i == 0:
+        if i == -1:
             print("xyz ", xyz)
             print("molecule['charges'] ", molecule['charges'])
             print("molecule['spins'] ", molecule['spins'])
@@ -812,14 +812,16 @@ def auto_preproc_stage1():
     print('Adding structure features...')
     enhance_structure_dict(structure_dict)
     print('Updating atoms dataframe...')
-    enhance_atoms(atoms,structure_dict)
+  #  enhance_atoms(atoms,structure_dict)
     print('Writing structures...')
     write_csv(os.path.join(root,settings['PROCESSED_DATA_DIR']),'',atoms,None,None,None)
 
     print('Reading bonds for train...')
     bonds = pd.read_csv(os.path.join(root,settings['RAW_DATA_DIR'],'train.csv'))
     print('Parsing bonds...')
+    print('pre enhance ', bonds[0])
     enhance_bonds(bonds,structure_dict)
+    print('after enhance ', bonds[0])
     bonds = add_all_pairs(bonds,structure_dict)
     triplets = make_triplets(bonds["molecule_name"].unique(),structure_dict)
     quadruplets = make_quadruplets(bonds["molecule_name"].unique(),structure_dict)
