@@ -178,6 +178,8 @@ class GraphTransformer(nn.Module):
         M = x_bond.shape[1]
         P = x_triplet.shape[1]
         Q = x_quad.shape[1] if self.use_quad else 0
+        
+        print("bsz N, M, P, Q ", bsz, N, M, P, Q)
 
         D = torch.zeros(x_atom.shape[0], N+M+P+Q, N+M+P+Q, device=x_atom.device)
         RA = slice(0,N)
