@@ -812,7 +812,7 @@ def auto_preproc_stage1():
     print('Adding structure features...')
     enhance_structure_dict(structure_dict)
     print('Updating atoms dataframe...')
-  #  enhance_atoms(atoms,structure_dict)
+    enhance_atoms(atoms,structure_dict)
     print('Writing structures...')
     write_csv(os.path.join(root,settings['PROCESSED_DATA_DIR']),'',atoms,None,None,None)
 
