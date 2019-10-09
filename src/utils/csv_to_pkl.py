@@ -21,6 +21,7 @@ from torch.utils.data import TensorDataset, DataLoader
 
 
 def get_datasets(root_dir, mode=""):
+    print("root_dir in ", root_dir)
     root_dir = root_dir.strip("/")
     full_path = f"/torch_proc_train{mode}.pkl.gz"
     p1_path = f"/torch_proc_train{mode}_p1.pkl.gz"
