@@ -48,7 +48,7 @@ def get_datasets(root_dir, mode=""):
      #       train = TensorDataset(*pickle.load(f))
      #   if mode == "_full":
      #       return train, None
-        with gzip.open(root_dir + f"/torch_proc_val{mode}.pkl.gz", "rb") as f:
+        with gzip.open(root_dir + f"/torch_proc_val.pkl.gz", "rb") as f:
             val = TensorDataset(*pickle.load(f))
         return train, val
     #  else:
