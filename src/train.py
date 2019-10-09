@@ -167,7 +167,7 @@ if len(args.name) == 0:
 #####################################################################
 
 batch_size = args.batch_size
-train_dataset, val_dataset = get_datasets(args.data, mode=args.mode)
+train_dataset, val_dataset = get_datasets("../processed/", mode=args.mode)
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
 if val_dataset is not None:
     assert args.mode != "_full", "You should NOT use the validation set when not in _full mode"
