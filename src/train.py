@@ -172,11 +172,17 @@ train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, dr
 if val_dataset is not None:
    # assert args.mode != "_full", "You should NOT use the validation set when not in _full mode"
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
-print('train_dataset.tensors ', train_dataset.shape)
-NUM_ATOM_TYPES = [int(train_dataset.tensors[1][:,:,i].max()) for i in range(3)]   # Atom hierarchy has 3 levels
-NUM_BOND_TYPES = [int(train_dataset.tensors[3][:,:,i].max()) for i in range(3)]   # Bond hierarchy has 3 levels
-NUM_TRIPLET_TYPES = [int(train_dataset.tensors[5][:,:,i].max()) for i in range(2)]  # Triplet hierarchy has 2 levels
-NUM_QUAD_TYPES = [int(train_dataset.tensors[7][:,:,i].max()) for i in range(1)]   # Quad hierarchy has only 1 level
+#print('train_dataset.tensors ', train_dataset.shape)
+#NUM_ATOM_TYPES = [int(train_dataset.tensors[1][:,:,i].max()) for i in range(3)]   # Atom hierarchy has 3 levels
+#NUM_BOND_TYPES = [int(train_dataset.tensors[3][:,:,i].max()) for i in range(3)]   # Bond hierarchy has 3 levels
+#NUM_TRIPLET_TYPES = [int(train_dataset.tensors[5][:,:,i].max()) for i in range(2)]  # Triplet hierarchy has 2 levels
+#NUM_QUAD_TYPES = [int(train_dataset.tensors[7][:,:,i].max()) for i in range(1)]   # Quad hierarchy has only 1 level
+
+NUM_ATOM_TYPES = [int(train_dataset[1][:,:,i].max()) for i in range(3)]   # Atom hierarchy has 3 levels
+NUM_BOND_TYPES = [int(train_dataset[3][:,:,i].max()) for i in range(3)]   # Bond hierarchy has 3 levels
+NUM_TRIPLET_TYPES = [int(train_dataset[5][:,:,i].max()) for i in range(2)]  # Triplet hierarchy has 2 levels
+NUM_QUAD_TYPES = [int(train_dataset[7][:,:,i].max()) for i in range(1)]   # Quad hierarchy has only 1 level
+
 NUM_BOND_ORIG_TYPES = 8
 MAX_BOND_COUNT = args.max_bond_count
 print(f"Atom hierarchy: {NUM_ATOM_TYPES}")
