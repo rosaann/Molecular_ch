@@ -143,11 +143,8 @@ def enhance_structure_dict(structure_dict):
                 bond_order = bond.GetBondType()
                 molecule['bond_orders'][atom0,atom1] = bond_order_dict[bond_order]
                 molecule['bond_orders'][atom1,atom0] = bond_order_dict[bond_order]
-                if i == 0:
-                    print("atom0 ", atom0)
-                    print("atom1 ", atom1)
-                    print("bond_order ", bond_order)
-                    print("bond_order_dict[bond_order] ", bond_order_dict[bond_order])
+               
+                
         # Supplementary information for tagging:
         # top_bonds: (N,4 or less) bond orders of the top 4 bonds, for each atom
         # bond_ids: (N,4): Label the atom with the following 4 linear transform of top_bonds:
@@ -184,7 +181,14 @@ def enhance_structure_dict(structure_dict):
         molecule['heterovalences'] = [mol.atoms[i].heterovalence for i in range(n_atom)]
         molecule['valences'] = [mol.atoms[i].valence for i in range(n_atom)]
         molecule['hyb_types'] = [mol.atoms[i].type for i in range(n_atom)]
-        
+        if i == 0:
+            print("xyz ", xyz)
+            print("molecule['charges'] ", molecule['charges'])
+            print("molecule['spins'] ", molecule['spins'])
+            print("molecule['heavyvalences'] ", molecule['heavyvalences'])
+            print("molecule['heterovalences'] ", molecule['heterovalences'])
+            print("molecule['valences'] ", molecule['valences'])
+            print("molecule['hyb_types'] ", molecule['hyb_types'])
         i += 1
     return structure_dict
 
