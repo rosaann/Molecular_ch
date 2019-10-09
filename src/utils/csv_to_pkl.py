@@ -27,7 +27,9 @@ def get_datasets(root_dir, mode=""):
     p2_path = f"/torch_proc_train{mode}_p2.pkl.gz"
     if mode != "":
         print(f"Using {mode} for dataset")
-
+    
+    print("root_dir ", root_dir)
+    print("mode ", mode)
     if mode == "" and (not os.path.exists(root_dir + full_path)) and os.path.exists(root_dir + p1_path):
         # Found part 1 and 2 of the dataset. Concatenate them first
         with gzip.open(root_dir + f"/torch_proc_train{mode}_p1.pkl.gz", "rb") as f:
@@ -39,7 +41,7 @@ def get_datasets(root_dir, mode=""):
         with gzip.open(root_dir+'/'+f"/torch_proc_train{mode}.pkl.gz", "wb") as f:
             pickle.dump(D_train, f, protocol=4)
 
-    if 1: #os.path.exists(root_dir + full_path):
+    if os.path.exists(root_dir + full_path):
         print("Found gzipped dataset!")
         with gzip.open(root_dir + f"/torch_proc_train{mode}.pkl.gz", "rb") as f:
             train = TensorDataset(*pickle.load(f))
@@ -48,14 +50,14 @@ def get_datasets(root_dir, mode=""):
         with gzip.open(root_dir + f"/torch_proc_val{mode}.pkl.gz", "rb") as f:
             val = TensorDataset(*pickle.load(f))
         return train, val
-  #  else:
-   #     with bz2.open(root_dir + f"/torch_proc_train{mode}.pkl.bz2", "rb") as f:
-  #          train = TensorDataset(*pickle.load(f))
-  #      if mode == "_full":
-  #          return train, None
-  #      with bz2.open(root_dir + f"/torch_proc_val{mode}.pkl.bz2", "rb") as f:
-  #          val = TensorDataset(*pickle.load(f))
-   #     return train, val
+    else:
+        with bz2.open(root_dir + f"/torch_proc_train{mode}.pkl.bz2", "rb") as f:
+            train = TensorDataset(*pickle.load(f))
+        if mode == "_full":
+            return train, None
+        with bz2.open(root_dir + f"/torch_proc_val{mode}.pkl.bz2", "rb") as f:
+            val = TensorDataset(*pickle.load(f))
+        return train, val
 
 def get_submission_set(root_dir, mode=""):
     full_path = "/torch_proc_submission{mode}.pkl.gz"
