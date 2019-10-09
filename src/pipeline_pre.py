@@ -143,7 +143,11 @@ def enhance_structure_dict(structure_dict):
                 bond_order = bond.GetBondType()
                 molecule['bond_orders'][atom0,atom1] = bond_order_dict[bond_order]
                 molecule['bond_orders'][atom1,atom0] = bond_order_dict[bond_order]
-
+                if i == 0:
+                    print("atom0 ", atom0)
+                    print("atom1 ", atom1)
+                    print("bond_order ", bond_order)
+                    print("bond_order_dict[bond_order] ", bond_order_dict[bond_order])
         # Supplementary information for tagging:
         # top_bonds: (N,4 or less) bond orders of the top 4 bonds, for each atom
         # bond_ids: (N,4): Label the atom with the following 4 linear transform of top_bonds:

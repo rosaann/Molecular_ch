@@ -394,7 +394,7 @@ def xyz2AC(atomicNumList,xyz):
     mol.AddConformer(conf)
 
     dMat = Chem.Get3DDistanceMatrix(mol)
-    print("dMat ", dMat)
+  #  print("dMat ", dMat)
     pt = Chem.GetPeriodicTable()
 
     num_atoms = len(atomicNumList)
@@ -402,20 +402,20 @@ def xyz2AC(atomicNumList,xyz):
 
     for i in range(num_atoms):
         a_i = mol.GetAtomWithIdx(i)
-        print("a_i i", a_i, i)
-        print("a_i.GetAtomicNum() ", a_i.GetAtomicNum())
+    #    print("a_i i", a_i, i)
+    #    print("a_i.GetAtomicNum() ", a_i.GetAtomicNum())
         Rcov_i = pt.GetRcovalent(a_i.GetAtomicNum())*1.30
-        print("Rcov_i ", Rcov_i)
+    #    print("Rcov_i ", Rcov_i)
         for j in range(i+1,num_atoms):
             a_j = mol.GetAtomWithIdx(j)
-            print("a_j j", a_j, j)
-            print("a_j.GetAtomicNum() ", a_j.GetAtomicNum())
+    #        print("a_j j", a_j, j)
+    #        print("a_j.GetAtomicNum() ", a_j.GetAtomicNum())
             Rcov_j = pt.GetRcovalent(a_j.GetAtomicNum())*1.30
-            print("Rcov_j ", Rcov_j)
+    #        print("Rcov_j ", Rcov_j)
             if dMat[i,j] <= Rcov_i + Rcov_j:
                 AC[i,j] = 1
                 AC[j,i] = 1
-    print("AC ", AC)
+  #  print("AC ", AC)
     return AC,mol
 
 def chiral_stereo_check(mol):
