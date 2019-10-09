@@ -31,7 +31,7 @@ def get_datasets(root_dir, mode=""):
     
     print("root_dir ", root_dir)
     print("mode ", mode)
-    if mode == "" and (not os.path.exists(root_dir + full_path)) and os.path.exists(root_dir + p1_path):
+    if 1:# mode == "" and (not os.path.exists(root_dir + full_path)) and os.path.exists(root_dir + p1_path):
         # Found part 1 and 2 of the dataset. Concatenate them first
         with gzip.open(root_dir + f"/torch_proc_train{mode}_p1.pkl.gz", "rb") as f:
             print("Wait Patiently! Combining part 1 & 2 of the dataset so that we don't need to do it in the future.")
@@ -44,10 +44,10 @@ def get_datasets(root_dir, mode=""):
 
     if 1:#os.path.exists(root_dir + full_path):
         print("Found gzipped dataset!")
-        with gzip.open(root_dir + f"/torch_proc_train{mode}.pkl.gz", "rb") as f:
-            train = TensorDataset(*pickle.load(f))
-        if mode == "_full":
-            return train, None
+     #   with gzip.open(root_dir + f"/torch_proc_train{mode}.pkl.gz", "rb") as f:
+     #       train = TensorDataset(*pickle.load(f))
+     #   if mode == "_full":
+     #       return train, None
         with gzip.open(root_dir + f"/torch_proc_val{mode}.pkl.gz", "rb") as f:
             val = TensorDataset(*pickle.load(f))
         return train, val
