@@ -170,7 +170,7 @@ batch_size = args.batch_size
 train_dataset, val_dataset = get_datasets("../processed/", mode=args.mode)
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
 if val_dataset is not None:
-    assert args.mode != "_full", "You should NOT use the validation set when not in _full mode"
+   # assert args.mode != "_full", "You should NOT use the validation set when not in _full mode"
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
 print('train_dataset.tensors ', train_dataset.tensors)
 NUM_ATOM_TYPES = [int(train_dataset.tensors[1][:,:,i].max()) for i in range(3)]   # Atom hierarchy has 3 levels
