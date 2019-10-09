@@ -51,15 +51,15 @@ def get_datasets(root_dir, mode=""):
         with gzip.open(root_dir + f"/torch_proc_val{mode}.pkl.gz", "rb") as f:
             val = TensorDataset(*pickle.load(f))
         return train, val
-  '''  else:
-        with bz2.open(root_dir + f"/torch_proc_train{mode}.pkl.bz2", "rb") as f:
-            train = TensorDataset(*pickle.load(f))
-        if mode == "_full":
-            return train, None
-        with bz2.open(root_dir + f"/torch_proc_val{mode}.pkl.bz2", "rb") as f:
-            val = TensorDataset(*pickle.load(f))
-        return train, val
-'''
+    #  else:
+    #    with bz2.open(root_dir + f"/torch_proc_train{mode}.pkl.bz2", "rb") as f:
+    #        train = TensorDataset(*pickle.load(f))
+    #    if mode == "_full":
+    #        return train, None
+    #    with bz2.open(root_dir + f"/torch_proc_val{mode}.pkl.bz2", "rb") as f:
+    #        val = TensorDataset(*pickle.load(f))
+   #     return train, val
+    
 def get_submission_set(root_dir, mode=""):
     full_path = "/torch_proc_submission{mode}.pkl.gz"
     if mode != "":
