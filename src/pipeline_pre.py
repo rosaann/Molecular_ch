@@ -95,9 +95,13 @@ def enhance_structure_dict(structure_dict):
         molecule['positions'] = positions
 
         # distances - array (N,N) of distances between atoms
+        print("positions ", positions, " n_atom ",n_atom )
         pos1 = np.tile(positions, (n_atom,1,1) )
+        print("pos1 ", pos1)
         pos2 = np.transpose(pos1, (1,0,2) )
+        print("pos2 ", pos2)
         dist = np.linalg.norm(pos1 - pos2, axis=-1)
+        print("dist ", dist)
         molecule['distances'] = dist
         
 
