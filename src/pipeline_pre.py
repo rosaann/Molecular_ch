@@ -113,7 +113,7 @@ def enhance_structure_dict(structure_dict):
         angle = np.arccos( np.clip(cos,-1.0,1.0) ).reshape((n_atom,1)) / np.pi
         molecule['angle'] = angle[:,0]
         
-        if i == -1:
+        if i == 0:
             print("sorted_j ", sorted_j)
             print("positions ", positions)
             print("sorted_j[:,1] ", sorted_j[:,1])
@@ -185,7 +185,7 @@ def enhance_structure_dict(structure_dict):
         molecule['heterovalences'] = [mol.atoms[i].heterovalence for i in range(n_atom)]
         molecule['valences'] = [mol.atoms[i].valence for i in range(n_atom)]
         molecule['hyb_types'] = [mol.atoms[i].type for i in range(n_atom)]
-        if i == -1:
+        if i == 0:
             print("xyz ", xyz)
             print("molecule['charges'] ", molecule['charges'])
             print("molecule['spins'] ", molecule['spins'])
